@@ -7,10 +7,9 @@ int main(){
     std::cout << std::endl << "Enter a second number: ";
     std::cin >> finish;
     if (finish < start) step = -1;
-    while (start != finish)
+    for (;start != finish;start += step)
     {
         std::cout << start << std::endl;
-        start += step;
     }
     std::cout << start << std::endl;
     return 0;
