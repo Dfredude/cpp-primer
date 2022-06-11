@@ -1,4 +1,5 @@
 #include<iostream>
+
 int main(int argc, char const *argv[])
 {
     int curr_value = 0, val = 0;
