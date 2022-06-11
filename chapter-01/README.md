@@ -64,3 +64,13 @@ int main(){
 ```
 'number' hasn't been declared, therefore it doesn't exist to the compiler resulting in an error.
 
+## 1.20 | Program using the Sales_item class
+You can instead of entering input manually, use files `transactions.txt` as input, and `transactions_result` as output. Use following examples:
+### Writing output overwriting data in output file.
+```
+20.exe <transactions >transactions_result.txt
+```
+### Writing output appending data in output file.
+```
+20.exe <transactions >>transactions_result.txt
+```

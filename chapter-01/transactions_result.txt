@@ -1,0 +1,4 @@
+This program sums multiple sales transactions
+0-201-78345-x 5 110 22
+0-201-79515-x 1 40 40
+0-205-48215-x 16 261 16.3125
