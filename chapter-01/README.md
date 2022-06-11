@@ -1,5 +1,5 @@
 # Chapter 1 - Getting started
-> These README files in each chapter will contain non executable-neccesary exercises
+> These README files in each chapter contain non executable-neccesary and/or extra information.
 
 ## 1.6 | Missing semicolon
 Explain wether the following program fragment is legal.
