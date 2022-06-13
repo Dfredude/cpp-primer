@@ -5,6 +5,8 @@ Book (Fifth edition) Written by:
 - Barbara E. Moo
 
 > This repository will contain all the material worked on from this book.
-
-### [Chapter 1](https://github.com/Dfredude/cpp-primer/tree/main/chapter-01)
-### [Chapter 2](https://github.com/Dfredude/cpp-primer/tree/main/chapter-02)
+### Content
+| Title | Chapter |
+| ------------- | ------------- |
+| Getting Started | **[Chapter 1](https://github.com/Dfredude/cpp-primer/tree/main/chapter-01)** |
+| Variables & Basic Types  | **[Chapter 2](https://github.com/Dfredude/cpp-primer/tree/main/chapter-02)** |
