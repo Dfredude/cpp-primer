@@ -1,5 +1,5 @@
-# C++ Primer Book
-(Fifth edition) Written by:
+# C++ Primer
+Book (Fifth edition) Written by:
 - Stanley B. Lippman
 - Jose Lajoie
 - Barbara E. Moo
