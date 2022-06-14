@@ -116,3 +116,44 @@ double d = 0, &r2 = d;
 - b) `r2 = r1;` VALID | r2 (d) double 0 --> double 0
 - c) `i = r2;` VALID | i int 0 --> int 0
 - d) `r1 = d;` VALID | int 0 --> int 0
+
+## 2.19 | Differences between References and Pointers
+
+- References are not objects, whereas Pointers are
+- We can't have references to references, but we can do pointers to pointers
+- We we'll always get the object to which a reference was initially bound
+- A reference must be initialized, where as a Pointer doesn't need to
+
+## 2.21 | Explain the following definitions. 
+```c++
+int i = 0; // Initializing i to cero
+```
+### Inidicate whether they are illegal or not
+```c++
+double* dp = &i; // VALID | dp Pointer initialized to i's address
+int *ip = i; // INVALID | Pointer int* type ip can't be initialized to int i's value
+int *p = &i; // VALID | Pointer p initialized to i's address
+```
+
+## 2.22 | Assuming P is  a Pointer, explain the following code
+```c++
+if (p) // Pointer 'p' is converted to a bool, false if is 0,nullptr or NULL true otherwise
+if (*p) // Pointer's object to which infers to is converted to a bool, 'false' if equal to 0, 'true' otherwise
+```
+
+## 2.23 | Given a Pointer **p**, can you determine wether **p** points to a valid object? If so, how? If not, why not?
+**Yes** and **no**
+It's possible to determine if a pointer holds an address with a valid object if at least the ponter was defined as **nullptr**, this way we can know by executing conditional statements. Like so
+```c++
+if (p) // True if Pointer points to a valid object, false otherwise
+```
+Otherwise if the ptr is undefined, this will be impossible to determine if it's valid or not because there's no way of knowing wether the bits are actually correct or not.
+
+## 2.24 Why is the initialization of **p** legal but that of  **lp** illegal?
+
+```c++
+int i = 42;
+void *p = &i; // void pointer can point to any kind of type
+long *lp = &i; // long pointer cannot point to a int type
+```
+Non-void pointers cannot hold a different type than their corresponding type. int with int*, long with long* and so on.
