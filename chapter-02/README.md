@@ -1,4 +1,4 @@
-# Chapter 1 - Getting started
+# Chapter 2 - Variables & Basic Types
 > These README files in each chapter contain non executable-neccesary and/or extra information.
 
 ## 2.1 | What are the differences between int. long, long long and short?
@@ -157,3 +157,94 @@ void *p = &i; // void pointer can point to any kind of type
 long *lp = &i; // long pointer cannot point to a int type
 ```
 Non-void pointers cannot hold a different type than their corresponding type. int with int*, long with long* and so on.
+
+## 2.25 Determine the types and the values of each of the following variables.
+
+```c++
+int* ip, i, &r = i; /*
+ • ip is a pointer to int
+ • i is an int
+ • r is an reference to int i 
+ */
+int i, *ip = 0; // i is an int, ip is valid null pointer for int
+int* ip, ip2; // ip is a pointer to int, ip2 is an int
+```
+
+## 2.26 Which of the following are legal? For those that are illegal, explain why.
+```c++
+const int buf; // ILLEGAL. const must be initialized
+int cnt = 0; // LEGAL. int initialized
+const int sz = cnt; // LEGAL. const int initialized to cnt's value.
+++cnt; ++sz; // ILLEGAL. Value can't be assigned to const
+> Tested these answers in `26.cpp`
+
+## 2.27 Which of the following initializations are legal? Explain why.
+
+```c++
+int i = 1, &r = 0; /* ILLEGAL.
+    i is intitialized to -1
+    r must point to an object. 0 is literal
+*/
+int *const p2 = &i2 // LEGAL. p2 points to an int
+const int i = -1, &r = 0; /* LEGAL. Multiple variable initialization.
+i is a const int with value -1
+r is a reference to a const int value 0
+*/
+const int *const p3 = &i2 // Legal. p3 initialized to point to const i2
+const int *p1 = &i2 // Legal. p1 can point to an int
+const int &const r2; // ILLEGAL. All references are const, so const keyword is not a valid type modifier. Also r2 must be initialized
+const int i2 = i, &r = i; /* LEGAL
+    i2 is a const int initialized to i's value
+    r is a reference to i
+*/
+```
+
+## 2.28 Explain the following definitions. Identify any that are illegal.
+
+```c++
+    int i, *const cp; // ILLEGAL. cp must be initialized
+    int *p1, *const p2; // ILLEGAL. p2 must be initialized
+    const int ic, &r = ic; // ILLEGAL.ic must be initialized
+    const int *const p3; // ILLEGAL. p3 must be initialized
+    const int *p; // LEGAL. p is a pointer to a const int
+```
+
+## 2.29 Using the variables in the previous exercise, which of the following assignments are legal? Explain why.
+
+```c++
+i = ic; // Legal. i is non-const, re-assigning is valid
+p1 = p3; // ILLEGAL. p3 is low-level const. Since p1 is not low-level const, thus unable to assigne.
+p1 = &ic; // ILLEGAL. p1 is not low-level const. Where ic is a const.
+p2 = p1; // ILLEGAL. Cannot reassign a high-level const pointer
+ic = *p3; // ILLEGAL. Cannot reassign const int ic
+```
+
+## 2.30 For each of the following declarations indicate whether the object being declared has top-level or low-level const
+
+```c++
+const int v2 = 0;
+int v1 = v2;
+int *p1 = &v1, &r1 = v1;
+const int *p2 = &v2, *const p3 = &i, &r2 = v2;
+```
+
+| Object |  Top-Level | Low-Level |
+| ------ | ---------- | --------- |
+|   v2   |      Y     |    NA     |
+|   v1   |      N     |    N      |
+|   p1   |      N     |    N      |
+|   r1   |      Y     |    N      |
+|   p2   |      N     |    Y      |
+|   p3   |      Y     |    Y      |
+|   r2   |      Y     |    Y      |
+
+## 2.31 Given the declarations in the previous exercise determine wether the following assignements are legal. Explain how the top-level or low-level const applies for each case.
+
+
+| Object   |Legal|Top-Level const|Low-Level const|
+| ------   | --- |   --------    |    ---------  |
+|`r1 = v2;`|  N  |      Both     |       N       |
+|`p1 = p2;`|  N  |       NA      |       p2      |
+|`p2 = p1;`|  Y  |       N       |       p2      |
+|`p1 = p3;`|  N  |       p3      |       p3      |
+|`p2 = p3;`|  Y  |       p3      |      Both     |
