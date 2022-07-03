@@ -248,3 +248,77 @@ const int *p2 = &v2, *const p3 = &i, &r2 = v2;
 |`p2 = p1;`|  Y  |       N       |       p2      |
 |`p1 = p3;`|  N  |       p3      |       p3      |
 |`p2 = p3;`|  Y  |       p3      |      Both     |
+
+
+## 2.32 Is the following code legal or not? If not, how might you make it legal?
+
+```c++
+int null = 0, *p = null; // Illegal wrong type in p initialization
+```
+Correction: 
+```c++
+int null = 0, *p = &null;
+```
+
+## 2.33 Using the variables definitions from this section determine what happens in each of these assignements:
+
+### Definitions
+```c++
+int i = 0, &r = i;
+auto a = r;
+
+const int ci = i, &cr = ci;
+auto b = ci;
+auto c = cr;
+auto d = &i;
+auto e = &ci;
+auto &g = ci;
+```
+
+### Assignments
+```c++
+a = 42; // a is now 42
+b = 42; // b is now 42
+c = 42; // c is now 42
+d = 42; // error: d is an int*. Cannot assign an int. Should've done *d instead
+e = 42; // error: e is an int*. Cannot assign an int. Should've done *d instead
+g = 42; // error: g is reference to a const
+```
+
+## 2.36 In the following code, determine the type of each variable and the value each variable has when the code finishes:
+
+```cpp
+int a = 3, b = 4; // a is an int 3, b is an int 4
+decltype(a) c = a; // c is an int 3
+decltype((b)) d = a; // d is an reference to int 3
+++c; // c is now 4
+++d; // a is now 4
+cout << "a is: " << typeid(a).name() << " " << a << endl; // 4
+cout << "b is: " << typeid(b).name() << " " << b << endl; // 4
+cout << "c is: " << typeid(c).name() << " " << c << endl; // 4
+cout << "d is: " << typeid(d).name() << " " << d << endl; // 4
+```
+
+## Describe the differences in type deduction between decltype and auto. Give an example of an expression where auto and decltype will deduce the same type and an example where they will deduce differing types.
+
+### **auto**
+- Deduces the type based on the initialization
+
+### decltype
+- Deduces the type from an expression
+- Deduced type depends on the form of the expression
+
+### Case where they yield the same result
+```cpp 
+    // Both are int
+    auto a = 5;
+    decltype(5) b = 5;
+```
+
+### Case where they don't yield the same result
+
+```cpp
+int i = 5;
+auto a = (i); // int
+decltype((i)) b = (i); // int&
+```
