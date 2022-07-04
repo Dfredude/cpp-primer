@@ -14,7 +14,6 @@ int main(int argc, char const *argv[])
             curr_item = new_item;
         }
     }
-    
     std::cout << std::endl << curr_item;
     return 0;
 }
