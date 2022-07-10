@@ -1,19 +1,15 @@
 #include<iostream>
 #include<string>
 
-using std::cout; using std::endl;
+using std::cout; using std::cin; using std::endl;
 using std::string;
 
-void toXs(string& str){
-    for (char& c: str){
-        c = 'x';
-    }
-}
-
-int main()
+int main(int argc, char const *argv[])
 {
-    string test = "Hello";
-    toXs(test);
-    cout << test << endl;
+    string whole_string, temp;
+    while (getline(cin, temp)){
+        whole_string += " " + temp;
+    }
+    cout << whole_string << endl;
     return 0;
 }
