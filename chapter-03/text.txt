@@ -1,0 +1,7 @@
+This is some random text,
+not really sure what to write down.
+
+i guess this program is supposed to fix
+uppercases at the beginning of each paragraph.
+
+let's see if this works!
