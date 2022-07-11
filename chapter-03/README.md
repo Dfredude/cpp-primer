@@ -19,3 +19,25 @@ It's valid. Default initialization still has a single value, which is a null ter
 const string s = "Keep out!";
 for (auto &c : s){ /* ... */ } // c is a char& (character reference)
 ```
+
+## 3.18 | Is the following program legal? If not, how might you fix it?
+
+### Given program
+```c++
+vector<int> ivec;
+ivec[0] = 42; // ILLEGAL. Subscripting a non existing item.
+```
+
+### Fix
+```c++
+vector<int> ivec;
+ivec.push_back(42); // This member function does the trick. Now ivec[0] is 42;
+```
+
+## 3.19 | List 3 ways to define a vector and give it ten elements, each with the value 42. Indicate whether there is a preferred way to do so, and why.
+
+```c++
+vector<int> vec(10, 42); // Prefered. It's syntatically better
+vector<int> vec = { 42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
+vector<int> vec{ 42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
+```
