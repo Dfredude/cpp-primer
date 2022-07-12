@@ -41,3 +41,7 @@ vector<int> vec(10, 42); // Prefered. It's syntatically better
 vector<int> vec = { 42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
 vector<int> vec{ 42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
 ```
+
+## 3.26 | In the binary search program on page 112, why did we write `mid = beg + (end - beg) / 2;` instead of `mid = (beg + end) / 2`?
+
+Iterators don't have a valid '+' operator to work with. So the second expression is not valid.
