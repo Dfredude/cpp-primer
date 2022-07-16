@@ -83,3 +83,26 @@ for (size_t ix = 1; ix <= array_size; ix++)
 
 ## 3.33 | What would happen if we did not initialize the scores array in program on page 116?
 All elements in the array wouldn't be default initialized, therefore all values wouldb be undefined (garbage value)
+
+## 3.34 | Given that p1 and p2 point to elements in the same array, what does the following code do? Are there values of p1 or p2 that make this code illegal?
+
+```c++
+p1 += p2 - p1
+```
+
+No. Based on pointer arithmetic, this operation will always shift p1 to where p2 is. The right-hand operation is simply the difference between the two pointer (could be positive or negative) and it's simply adding that difference to the pointer on the left-hand side of the assignment.
+
+## 3.37 | What does the following program do?
+
+```c++
+    const char ca[] = {'h', 'e', 'l', 'l', 'o'}; // Initializing 5 characters array
+    const char *cp = ca; // Pointer to array (first element of array)
+    while (*cp) { // Dereferencing pointer, body will execute until *cp is false (0)
+        cout << *cp << endl; // Printing dereferenced value
+        ++cp; // Passing to next pointer. It doesnt matter if it points to an element out of "ca"
+    }
+```
+
+## 3.38 | In this section, we noted that it was not only illegal but meaningless to try to add two pointers. Why would adding two pointers be meaningless?
+
+It doesn't make sense. We don't expect to get a useful value out of that kind of operation. If existed, this would return us an out-of-boundary pointer which would be totally useless.

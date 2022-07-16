@@ -1,0 +1,42 @@
+#include<iostream>
+
+using std::cout; using std::endl;
+
+// Rewrite using auto keyword
+
+int main(int argc, char const *argv[])
+{
+    int ia[3][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    };
+
+    cout << "Printing using for range" << endl;
+    // Print using for range
+    for (auto &row : ia){ // Already there
+        for (auto col : row)
+        {
+            cout << col << endl;
+        }
+    }
+
+    cout << "Printing using subscripts" << endl;
+    // Print using for loop and subscripts
+    for (auto i = 0; i < 3; i++){
+        for (auto j = 0; j < 4; j++)
+        {
+            cout << ia[i][j] << endl;
+        }
+    }
+
+    // Print using pointers
+    cout << "Printing using pointer" << endl;
+    for (auto p = ia[0]; p < ia[0]+12 ; p++) // Hacky way to do it
+    {
+        cout << *p << endl;
+    }
+    
+    
+    return 0;
+}
