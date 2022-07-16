@@ -10,3 +10,4 @@ Book (Fifth edition) Written by:
 | ------------- | ------------- |
 | Getting Started | **[Chapter 1](https://github.com/Dfredude/cpp-primer/tree/main/chapter-01)** |
 | Variables & Basic Types  | **[Chapter 2](https://github.com/Dfredude/cpp-primer/tree/main/chapter-02)** |
+| Strings, Vectors & Arrays | **[Chapter 3](https://github.com/Dfredude/cpp-primer/tree/main/chapter-03)** |
