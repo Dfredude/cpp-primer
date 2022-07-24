@@ -137,5 +137,166 @@ vec[ival++] <= vec[ival] // It's an undefined behavior. ival is used in both exp
 vec[ival] <= vec[ival+1]
 ```
 
+## 4.20 | Assuming that iter is a vector<string>::iterator, indicate which if any of the following expressions are legal. Explain the behavior of the legal expressions and why those that aren'r legal are in error.
+
+```c++
+*iter++; // LEGAL. iter is incremented by one, and it's old value is returned. So the original pointer is dereferenced.
+(*iter)++; // ILLEGAL. First dereferences iter, however post-incrementing a string is not possible..
+*iter.empty() // ILLEGAL. empty() member function is gonna try to execute first. Howevera an iterator doesn't have that member function. 
+iter->empty(); // LEGAL. -> Operator dereferences iter and calls member function afterwards.
+++*iter; // ILLEGAL. iter is dereferenced however post-incrementing a string is not possible.
+iter++->empty(); // // LEGAL. iter is post-incremented and accesing empty member function of original iter object it points to.
+```
+
+## 4.22 | Extend the program that assigned high pass, pass, and fail grades to also assign low pass for grades between 60 and 75 inclusive. Write two versions: One version that uses only conditional operators; the other should use one or more if statements. Which version do you think is easier to understand and why?
+
+Conditional statements are way much easier to read, because they have a more human readable syntax. Besides the conditional operator (trenary operator) can get really confusing when having a lot of nested operators.
+
+## 4.23 | The following expression fails to compile due to operator precedence. Using Table 4.12 (p. 166), explain why it fails. How would you fix it?
+```c++
+string s = "word";
+string pl = s + s[s.size() - 1] == 's' ? "" : "s";
+```
+
+### Deconstructing what happens
+```C++
+s + s[3] == 's' ? "" : "s";
+s + 'd' == 's' ? "" : "s";
+"wordd" == 's' ? "" : "s"; //  Can't compare a string with a char
+```
+
+### Correction
+```c++
+string s = "word";
+string pl = s + s[s.size() - 1] == "s" ? "" : "s"; // Using "s" instead of 's'
+```
+## 4.24 | Our program that distinguished between high pass, pass, and fail depended on the fact that the conditional operator is right associative. Describe how that operator would be evaluated if the operator were left associative.
+
+```c++
+// Right associative:
+cout << ((grade > 90) ? "high pass" : (grade < 60) ? "fail" : "pass");
+
+// Left associative.
+// error: operands to ?: have different types ‘const char*’ and ‘bool’
+cout << (((grade > 90) ? "high pass" : (grade < 60)) ? "fail" : "pass");
+```
+## 4.25 | What is the value of `~'q' << 6` on a machine with 32-bit ints and 8 bit chars, that uses Latin-1 character set in which 'q' has the bit pattern 01110001?
+
+```c++
+~'q'<<6
+~01110001 -> 11111111	11111111	11111111    10001110 -> 114 // First bit is a negative value (-2^31)
+(10001110 << 6) -> 1111 1111    1111 1111   1110 0011   1000 0000 -> -7296 // 2147476352 - 2^31
+0xFFFFE380
+```
+
+## 4.26 | In our grading example in this section, what would happen if we used unsigned int as the type for quiz1?
+
+`unsigned int` based on C++ standard doesn't guarantee 32 bit integer. Therefore `unsigned long` should be used, since it guarantees 32 bit integer.
+
+ ## 4.27 | What is the result of each of these expressions?
+ 0000 0011
+ 0000 0111
+```c++
+unsigned long ul1 = 3, ul2 = 7;
+ul1 & ul2 // 0011 -> 3 
+ul1 | ul2 // 0111 -> 7
+ul1 && ul2 // true
+ul1 || ul2 // true
+ ```
+
+ ## 4.30 | Using Table 4.12(p. 166), parenthesize the following expressions to match the default evaluation: (a) sizeof x + y (b) sizeof p->mem[i] (c) sizeof a < b (d) sizeof f()
+
+```c++
+sizeof x+y
+(sizeof x)+y
+sizeof p‐>mem[i]
+sizeof(p‐>mem[i])
+sizeof a < b
+sizeof(a) < b
+sizeof f()
+If f() returns void, this statement is undefined, otherwise it returns the size of return type.
+```
+
+## 4.31 | The program in this section used the prefix increment and decrement operators. Explain why we used prefix and not postfix. What changes would have to be made to use the postfix versions? Rewrite the program using postfix operators.
+
+In the case of the expression `ix++` it doesn't affect whether you use the prefix or postfix incremental operator because the returned value is not used.
+```c++
+for(vector<int>::size_type ix = 0; ix != ivec.size(); ix++, cnt--)
+	ivec[ix] = cnt;
+```
+
+## 4.32 | Explain the following loop.
+Basically `ptr` traverses through all valid non-past-end pointers.
+```c++
+constexpr int size = 5; // Initializing constexpr int to 5
+int ia[size] = {1,2,3,4,5}; // Initializing int[5]
+for (int *ptr = ia /*Pointer to first int*/, ix = 0 ; ix != size && ptr != ia+size; ++ix, ++ptr){ /* ... */ }
+```
+
+## 4.33 | Using Table 4.12(p. 166) explain what the following expression does: 
+```c++
+some_Value ? ++x, ++y : --x, --y
+```
+```c++
+some_Value ? (++x, ++y) : (--x, --y) // Comma operator returns right-most value
+```
+
+## 4.34 | Given the variable definitions in this section, explain what conversions take place in the following expressions. Remember that you may need to consider the associativity of the operators.
+```c++
+if (fval) // float to boolean
+dval = fval + ival; // integer to float, then float to double
+dval + ival * cval; // character to integer, then integer to double
+```
+
+## 4.35 | Given the following definitions,
+
+```c++ 
+char cval;
+int ival;
+unsigned int ui;
+float fval;
+double dval;
+```
+
+### Identify the implicit type conversions, if any, taking place: 
+```c++ 
+cval = 'a' + 3; // char to int, then int to char
+fval = ui - ival * 1.0; // int to double, unsigned to double, double to float
+dval = ui * fval; // unsigned to float, float to double
+cval = ival + fval + dval; // int to float, float to double, double to char
+```
+
+## 4.36 | Assuming `i` is an `int` and `d` is a `double`, write the expression `i *= d` so that it does integral, rather than floating-point, multiplication.
+```c++
+i * static_cast<int>(d);
+```
+
+## 4.37 | Rewrite each of the following old-style casts to use a named cast:
+```c++
+int i;
+double d;
+const string *ps;
+char *pc;
+void *pv;
+pv = (void*)ps;
+i = int(*pc);
+pv = &d;
+pc = (char*) pv;
+```
+
+```c++
+pv = static_cast<void*>(const_cast<string*>ps);
+i = static_cast<int>(*pc);
+pv = static_cast<void*>(&d);
+pc = static_cast<char*> pv;
+```
+
+## 4.38 Explain the following expression: 
+```c++
+double slope = static_cast<double>(j/i); // The result of j/i is casted to double
+```
+
+
+
 
 
