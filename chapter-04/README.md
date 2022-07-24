@@ -86,3 +86,56 @@ i != (j < k) // j > k is the first expression evaluated, which returns a bool
 i != bool // bool is turned into an int either 0 or 1
 bool // We finally get a bool, depending on whether i was equal to the bool gotten from the previous expression. 
 ```
+
+## 4.13 | What are the values of i and d after each assignment?
+```c++
+int i; double d;
+d = i = 3.5; // i and d become 3
+i = d = 3.5; //  d becomes 3.5, i becomes 3
+```
+
+## 4.14 | Explain what happens in each of the if tests:
+```c++
+if (42=i) // Error: can't assign to an rvalue
+if (i = 42) // 42 is assigned to i, then is converted to true to be usable in the statement
+```
+
+## 4.15 | The following assignment is illegal. Why? How would you correct it?
+```c++
+double dval; int ival; int *pi;
+dval = ival = pi = 0; // can't assign a value of a pointer (nullpointer) to an int
+```
+
+## 4.16 | Although the following are legal, they probably do not behave as the programmer expects. Why? Rewrite the expressions as you think they should be.
+
+```c++
+if (p = getPtr() != 0) // either 1 or 0 is assigned to p
+if (i = 1024) // will always evaluate to true
+```
+### Corrections
+```c++
+if ((p = getPtr()) != 0) // Add parentheses to force precedence
+if (i == 1024) // Use equality operator instead of assignment operator
+```
+
+## 4.17 | Explain the difference between the prefix and postfix increment.
+- prefix: Inmediately increments by one and returns the new value
+- postfix: increments it by one and returns a copy of the original value
+
+## 4.18 | What would happen if the while loop on page 148 that prints the elements from a vector used the prefix increment operator?
+Error: it would try to dereference an unexisting value.
+
+## 4.19 | Given that ptr points to an int, that vec is a vector<int>, and that ival is an int, explain the behavior of each of these expressions. Which, if any, are likely to be incorrect? Why? How might each be corrected?
+
+```c++
+ptr != 0 && *ptr++ // evaluating to not have a null pointer, then dereferencing and incrementing ptr by one.
+ival++ && ival // Returns current value of ival and post-increments it by one. Then evaluates whether ival is 0 or not (bool)
+vec[ival++] <= vec[ival] // It's an undefined behavior. ival is used in both expressions, and it's mutating in one of them.
+```
+### Correction
+```c++
+vec[ival] <= vec[ival+1]
+```
+
+
+
