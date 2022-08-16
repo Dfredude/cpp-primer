@@ -1,4 +1,4 @@
-# Chapter 3 - Strings, Vectors and Arrays
+# Chapter 4 - Expressions
 > These README files in each chapter contain non executable-neccesary and/or extra information.
 
 ## 4.1 | What is the value returned by 5 + 10 * 20/2?
