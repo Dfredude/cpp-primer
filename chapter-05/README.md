@@ -43,3 +43,37 @@ while (bool status = find(word)) { /* .. */ }
 if (!status) { /* ... */ }
 ```
 The if conditional statement is unneccessary since the status boolean will always be false after finishing the loop.
+
+## 5.7 | Correct the errors in each of the following code
+### a)
+```c++
+if (ival1 != ival2)
+    ival1 = ival2
+else ival1 = ival2 = 0;
+```
+It's missing a semicolon in the statement within the if statement. `ival1 = ival2;`
+### b)
+```c++
+if (ival < minval)
+    minval = ival;
+    occurs = 1;
+```
+We need to use a bloc statement. In other words just enclose the last 2 statements within curly braces.
+### c)
+```c++
+if (int ival = get_value())
+    cout << "ival = " << ival << endl;
+if (!ival)
+    cout << "ival = 0\n";
+```
+ival is not declared for the scope of the second if statement.
+### d)
+```c++
+if (ival = 0)
+    ival = getvalue();
+```
+warning: ival is being reassigned to 0
+
+## 5.8 | What is a dangling else?
+
+It's when an else statement doesn't work with the if statement your wanted. Remember an else will relate to the closest if that is in scope!
