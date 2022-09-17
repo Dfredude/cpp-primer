@@ -1,0 +1,8 @@
+We have: 
+a: 50
+e: 62
+i: 68
+o: 34
+u: 65
+blank spaces: 120
+ff, fl & fi: 3
