@@ -77,3 +77,68 @@ warning: ival is being reassigned to 0
 ## 5.8 | What is a dangling else?
 
 It's when an else statement doesn't work with the if statement your wanted. Remember an else will relate to the closest if that is in scope!
+
+## 5.13 | Each of the following programs contain a common programming error. Identify and correct each error.
+### (a)
+```c++
+unsigned aCnt = 0, eCnt = 0, iouCnt = 0;
+char ch = next_text();
+switch (ch) {
+    case 'a': aCnt++;
+    case 'e': eCnt++;
+    default: iouCnt++;
+}
+```
+> If the text contains other characters than vowels, the output will be wrong for `iouCnt` since it'll count in basically any character that isn't `'a'` nor `'b'`.
+
+### (b)
+```c++
+unsigned index = some_value();
+switch (index) {
+    case 1:
+        int ix = get_value();
+        ivec[ix] = index;
+        break;
+    default:
+        ix = ivec.size() - 1;
+        ivec[ix] = index;
+}
+```
+> ix is not declared in the `default` statement. Out of scope.
+
+### (c)
+
+```c++
+unsigned evenCnt = 0, oddCnt = 0;
+int digit = get_num() % 10;
+switch (digit) {
+    case 1, 3, 5, 7, 9:
+        oddcnt++;
+        break;
+    case 2, 4, 6, 8, 10:
+        evencnt++;
+        break;
+}
+```
+> Case labels can only be a single expression. The comma operator returns the left-hand expression.
+
+### (d)
+
+```c++
+unsigned ival = 512, jval = 1024, kval = 4096;
+unsigned bufsize;
+unsigned swt = get_bufCnt();
+switch (swt) {
+    case ival:
+        bufsize = ival = sizeof(int);
+        break;
+    case jval:
+        bufsize = jval * sizeof(int);
+        break;
+    case kval:
+        bufsize = kval * sizeog(int);
+        break;
+}
+```
+
+> `break;` statement is unnecessary at the the last case.
