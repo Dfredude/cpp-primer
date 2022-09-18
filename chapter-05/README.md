@@ -142,3 +142,56 @@ switch (swt) {
 ```
 
 > `break;` statement is unnecessary at the the last case.
+
+## 5.15 | Explain each of the followin loops. Correct any problems you detect.
+
+### (a)
+```c++
+for (int ix = 0; ix != sz; ++ix) { /*...*/}
+if (ix != sz)
+    // ...
+```
+> `ix` is out of scope. Just put the conditional statement where the comment's at.
+
+### (b)
+
+```c++
+int ix;
+for (ix != sz; ++ix) { /* ... */}
+```
+> The for's form is incorrect. One statement is missing. Just add an init-statement (could be an null statement).
+
+### (c)
+
+```c++
+for (int ix = 0; ix != sz; ++ix, ++sz){ /* ... */}
+```
+> Infinite loop. Just remove `++sz`
+
+## 5.18 | Explain each of the following loops. Correct any problems you detect.
+### (a)
+```c++
+do 
+    int v1, v2;
+    cout << "Please enter two numbers to sum: ";
+    if (cin >> v1 >> v2)
+        cout << "Sum is: " << v1 + v2 << endl;
+while (cin);
+```
+> One statement or compound statement needs to post fix the `do` keyword. And the while should go afterwards.
+
+### (b)
+```c++
+do {
+    // ...
+} while (int ival = get_response());
+```
+> Declaration is not allowed in a while conditional expression.
+
+### (c)
+```c++
+do {
+    int ival = get_response();
+} while (ival)
+```
+> ival's out of scope
