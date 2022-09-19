@@ -195,3 +195,10 @@ do {
 } while (ival)
 ```
 > ival's out of scope
+
+### 5.22 | The las example in this section that jumped back to `begin` could be better written using a loop. Rewrite the code to eliminate the `goto`.
+
+```c++
+int sz = get_size();
+while(sz <= 0) sz = get_size();
+```
