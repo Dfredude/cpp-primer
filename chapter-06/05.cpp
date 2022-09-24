@@ -3,8 +3,7 @@
 using std::cout;
 
 unsigned absval(long i){
-    if (i < 0) return i * -1;
-    return i;
+    return (i < 0) ? i * -1: i;
 }
 
 
