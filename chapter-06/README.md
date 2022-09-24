@@ -83,3 +83,49 @@ cl factMain.obj fact.obj
 ```cmd
 cl factMain.obj fact.obj -o main
 ```
+
+## 6.12 | Rewrite the program from exercise 6.10 to use references instead of pointers to swap the values of two ints. Which version do you think would be easier to use and why?
+
+References version is better, because it's easier to read and understand what it's doing.
+
+## 6.13 | Assuming T is the name of a type, explain the difference between a function declared as `void f(T)` and `void f(T&)`.
+
+`void f(T)` is a function which copies the value in its scope to use it.
+`void f(T&)` is a function which refernces to the value passed to it, so it can modify its value.
+
+## 6.14 | Give an example of when a parameter should be a reference type. Give an example of when a parameter should not be a reference.
+
+### Using reference
+When you want to modify an argument's value or to avoid copying an argument's value, thus saving up memory.
+```c++
+void func(int& num){
+    num = 3;
+}
+```
+
+### Using parameters by value
+When you need to copy the value for some reason. Probably the original argument is gonna change, so you need to save its value.
+```c++
+int func(int num){
+    return ++num;
+}
+```
+
+## 6.15 Explain the rationale for the type of each of `find_char`'s parameters. 
+
+### In particular, why is `s` a reference to const but `occurs` is a plain reference? 
+- Because you don't want to change `s`'s reference value. However you do want to increment `occurs`'s reference value.
+
+### Why are these parameters references, but the `char` parameter is not?
+- `s` could be potentially a big variable, so we avoid copying it and saving memory.
+- `occurs` need to be a reference to modify its value.
+- `char` is only a few bytes of memory, we can affor copying that small variable.
+
+### What could happen if we made `s` a plain reference?
+- We could accidentally modify the value and mess up the program.
+
+### What if we made `occurs` a reference to const?
+- Incrementing it wouldn't be possible.
+
+
+
