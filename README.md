@@ -4,7 +4,7 @@ Book (Fifth edition) Written by:
 - Jose Lajoie
 - Barbara E. Moo
 
-> This repository will contain all the material worked on from this book.
+> This repository will contain all the material worked on throughout this book.
 ### Content
 | Title | Chapter |
 | ------------- | ------------- |
