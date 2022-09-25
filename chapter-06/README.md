@@ -127,5 +127,68 @@ int func(int num){
 ### What if we made `occurs` a reference to const?
 - Incrementing it wouldn't be possible.
 
+## 6.16 | The following function, although legal, is less useful than it might be. Identify and correct the limitation on this function:
 
+```c++
+bool isempty(string& s){
+    return s.empty();
+}
+```
+
+You can't use literal strings (c-style strings) as arguments, since we need reference to an object.
+
+## 6.17 | Write a function to determine whether a string contains any capital letters. Write a function to change a string to all lowercase. Do the parameters you used in these functions have the same type? If so, why? If not, why not? 
+> See `17.cpp`
+Both have the same, it's useless to check if a literal string is empty, because it's a constant.
+
+## 6.18 | Write declarations for each of the following functions. When you write these declarations, use the name of the function to indicate what the function does.
+
+(a) A function named `compare` that returns a `bool` and has two parameters that are references to a class named `matrix`.
+
+```c++
+bool compare(const matrix&, const matrix&);
+```
+
+(b) A function named `change_val` that returns a `vector<int>` iterator and takes two parameters: One is an int and the other is an iterator for a `vector<int>`
+
+```c++
+vector<int> change_val(int, vector<int>::iterator&);
+```
+
+## 6.19 | Given the following declarations, determine which calls are legal and which are illegal. For those that are illegal, explain why:
+
+```c++
+double calc(double);
+int count(const string&, char);
+int sum(vector<int>::iterator, vector<int>::iterator, int);
+vector<int> vec(10);
+```
+### (a)
+```c++
+calc(23.4, 55.1);
+```
+> Illegal. No function matches those arguments. Too many.
+### (b)
+```c++
+count("abcda", "a")
+```
+> Illegal. "a" should be a char not a string.
+
+(c)
+```c++
+calc(66);
+```
+> Legal.
+
+(d)
+```c++
+sum(vec.begin(), vec.end(), 3.8);
+```
+> Legal.
+
+## 6.20 | When should reference parameters be references to `const`? What happens if we make a parameter a plain reference when it could be a reference to `const`?
+
+- We should have a reference to const when we wanna avoid copying a big object but we don't wanna change its value.
+
+- If we don't follow this logic, we can potentially modify data and mess up our program.
 
