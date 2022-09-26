@@ -4,7 +4,7 @@ Book (Fifth edition) Written by:
 - Jose Lajoie
 - Barbara E. Moo
 
-> This repository will contain all the material worked on from this book.
+> This repository will contain all the material worked on throughout this book.
 ### Content
 | Title | Chapter |
 | ------------- | ------------- |
@@ -13,3 +13,4 @@ Book (Fifth edition) Written by:
 | Strings, Vectors & Arrays | **[Chapter 3](https://github.com/Dfredude/cpp-primer/tree/main/chapter-03)** |
 | Expressions | **[Chapter 4](https://github.com/Dfredude/cpp-primer/tree/main/chapter-04)** |
 | Statements | **[Chapter 5](https://github.com/Dfredude/cpp-primer/tree/main/chapter-05)** |
+| Functions | **[Chapter 6](https://github.com/Dfredude/cpp-primer/tree/main/chapter-06)** |
