@@ -192,3 +192,13 @@ sum(vec.begin(), vec.end(), 3.8);
 
 - If we don't follow this logic, we can potentially modify data and mess up our program.
 
+## 6.24 | Explain the behavior of the following function. If there are problems in the code, explain what they are and how you might fix them.
+
+```c++
+void print(const int ia[10])
+{
+	for(size_t i = 0; i != 10; ++i)
+		cout << ia[i] << endl;
+}
+```
+It's syntatically correct, however it's useless for any array that has other size than 10. We should provide an arbitrary size parameter to be able to handle any array size.
