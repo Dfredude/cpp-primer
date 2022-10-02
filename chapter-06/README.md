@@ -202,3 +202,10 @@ void print(const int ia[10])
 }
 ```
 It's syntatically correct, however it's useless for any array that has other size than 10. We should provide an arbitrary size parameter to be able to handle any array size.
+
+## 6.28 | In the second version of error_msg that has an ErrCode parameter, what is the type of elem in the for loop?
+```const std::string&```
+
+## 6.29 | When you use an initializer_list in a range for would you ever use a reference as the loop control variable? If so, why? If not, why not?
+
+Yes! It's useful when you could expect big number of heavy data types arguments passed into the initializer_list.
