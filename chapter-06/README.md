@@ -209,3 +209,44 @@ It's syntatically correct, however it's useless for any array that has other siz
 ## 6.29 | When you use an initializer_list in a range for would you ever use a reference as the loop control variable? If so, why? If not, why not?
 
 Yes! It's useful when you could expect big number of heavy data types arguments passed into the initializer_list.
+
+## 6.30 | Compile the version of str_subrange as presented on page 223 to see what your compiler does with the indicated errors.
+MSVC compiler.
+```c++
+30.cpp(14): error C2561: 'str_subrange': function must return a value
+30.cpp(6): note: see declaration of 'str_subrange'
+```
+
+## 6.31 | When is it valid to return a reference? A reference to const?
+When the reference doesn't point to an local object of the function you're gonna return from.
+
+## 6.32 | Indicate whether the following function is legal. If so, explain what it does; if not, correct any errors and then explain it.
+
+```c++
+int &get(int *arry, int index)
+{
+	return arry[index];
+}
+int main()
+{
+	int ia[10];
+	for(int i = 0; i != 10; ++i)
+		get(ia, i) = i;
+}
+```
+
+LEGAL. Basically `arry[index]` is acting as `*(array+index)`. So it's returning the reference of the array's object at the `index` position.
+
+## 6.34 | What would happen if the stopping condition in factorial were if(val != 0)
+
+- If the argument is positive, it behaves properly
+- If the argument is negative it'll continue forever
+
+## 6.35 | In the call to fact, why did we pass val - 1 rather than val--?
+
+- val is used in other parts of the function, so we don't want to create anomalies by mutating `val`'s value.
+- As you go back up through the call stack, val would've been 
+
+
+
+
