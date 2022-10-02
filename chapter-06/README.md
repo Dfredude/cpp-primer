@@ -247,6 +247,34 @@ LEGAL. Basically `arry[index]` is acting as `*(array+index)`. So it's returning 
 - val is used in other parts of the function, so we don't want to create anomalies by mutating `val`'s value.
 - As you go back up through the call stack, val would've been 
 
+## 6.36 | Write the declaration for a function that returns a reference to an array of ten strings, without using either a trailing return, decltype, or a type alias.
+
+```c++
+string (&func( string (&orginal)[10] ))[10]; // Taking a reference arg, otherwise it makes no sense to return a reference.
+```
+
+## 6.37 | Write three additional declarations for the function in the previous exercise. One should use a type alias, one should use a trailing return, and the third should use decltype. Which form do you prefer and why?
+
+```c++
+// 1 - One should use a type alias 
+typedef string arrS[10];
+arrS (&funcTypeAlias( arrS (&original) ));
+// 2 - The second should use a trailing return 
+auto funcTrailing(string (&input)[10]) -> string(&)[10];
+// 3 - The third should use decltype. 
+decltype(arr) &funcDecltype(string (&inArr)[10]);
+```
+
+## 6.38 | Revise the arrPtr function on to return a reference to the array.
+
+```c++
+decltype(arrStr) &arrPtr(int i)
+{
+	return(i % 2) ? odd : even;
+}
+```
+
+
 
 
 
