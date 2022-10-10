@@ -274,7 +274,130 @@ decltype(arrStr) &arrPtr(int i)
 }
 ```
 
+## 3.39 | Explain the effect of the second declaration in each one of the following sets of declarations. Indicate which, if any, are illegal.
 
+```c++
+(a)
+int calc(int, int);
+int calc(const int, const int);
+// 2nd declaration is redefined to the first declaration. Top-level const is ignored. Error when defining both functions, due to duplicate definitions for the same function (MSVC).
+(b)
+int get();
+double get();
+// ILLEGAL. Ambigous call, return type doesn't differentiate a function to another.
+(c)
+int *reset(int *);
+double *reset(double *);
+OK
+```
 
+## 3.40 | Which, if either, of the following declarations are errors? Why?
 
+```C++
+(a) int ff(int a, int b = 0, int c = 0); // OK
+(b) char *init(int ht = 24, int wd, char bckgrnd); // ERROR. Parameters declared after a parameter that's got a defualt value, should also have defaults defined.
+```
 
+## 3.41 | Which, if any, of the following calls are illegal? Why? Which, if any, are legal but unlikely to match the programmer’s intent? Why?
+
+```c++
+char *init(int ht, int wd = 80, char bckgrnd = ' ');
+(a) init(); // ILLEGAL. ht needs to be part of the args
+(b) init(24,10); // LEGAL. 
+(c) init(14, '*'); // LEGAL. Not what could be intended, char is converted implicitly to an int for the wd parameter.
+```
+
+## 3.42 | Give the second parameter of make_plural(§6.3.2, p.224) a default argument of 's'. Test your program by printing singular and plural versions of the words success and failure.
+
+```c++
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::endl;
+using std::string;
+
+string make_plural(size_t ctr, const string& word, const string& ending = "s")
+{
+	return (ctr > 1) ? word + ending : word;
+}
+
+int main()
+{
+	cout << "singual: " << make_plural(1, "success", "es") << " "
+	     << make_plural(1, "failure") << endl;
+	cout << "plural : " << make_plural(2, "success", "es") << " "
+	     << make_plural(2, "failure") << endl;
+
+	return 0;
+}
+```
+
+## 6.43 | Which one of the following declarations and definitions would you put in a header? In a source file? Explain why.
+
+```c++
+(a) inline bool eq(const BigInt&, const BigInt&) {...} // Header. The function is evaluated as an expression.
+(b) void putValues(int *arr, int size); // Header and function body in source.
+```
+
+## 6.44 | Rewrite the isShorter function from § 6.2.2(p. 211) to be inline.
+
+```c++
+inline bool isShorter(const string& s1, const string& s2)
+{
+	return s1.size() < s2.size();
+}
+```
+
+## 6.45 | Review the programs you’ve written for the earlier exercises and decide whether they should be defined as inline. If so, do so. If not, explain why they should not be inline.
+
+1. Factorial function. Not inline because it's recursive, and compiler will automatically discard it as inline.
+2. getval(). Perfect for inline. It's a small expression.
+
+## 6.46 | Would it be possible to define isShorter as a constexpr? If so, do so. If not, explain why not.
+
+- It's not possible, since the return statement doesn't return a constexpr.
+
+## 6.48 | Explain what this loop does and whether it is a good use of assert:
+
+```c++
+string s; 
+// Loops until cin ends, or s has been sought already
+while(cin >> s && s != sought) { } // empty body
+// assert terminates program, cin evaluates to false since there's no more input. Not good use.
+assert(cin);
+```
+
+## 6.49 | What is a candidate function? What is a viable function?
+
+### Candidate functions...
+Are  functions that match the called function identifier.
+
+### Viable functions...
+Are functions that match the parameters, or are compatible through conversion.
+
+## 6.50 | Given the declarations for f from page 242, list the viable functions, if any for each of the following calls. Indicate which function is the best match, or if the call is illegal whether there is no match or why the call is ambiguous.
+
+```c++
+void f();
+void f(int);
+void f(int, int);
+void f(double, double = 3.14);
+(a) f(2.56, 42) /*
+ILLEGAL. Two best matches. Ambigous call.
+- void f(int, int); <-- BM (Best match)
+- void f(double, double = 3.14); <-- BM (Best match)
+*/
+(b) f(42)/*
+void f(int); <-- BM
+void f(double, double = 3.14);
+*/
+(c) f(42, 0)/*
+void f(int, int); <-- BM
+void f(double, double = 3.14);
+*/
+(d) f(2.56, 3.14)/*
+void f(int, int);
+void f(double, double = 3.14); <-- BM
+*/
+```
