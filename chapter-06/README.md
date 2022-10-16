@@ -401,3 +401,30 @@ void f(int, int);
 void f(double, double = 3.14); <-- BM
 */
 ```
+
+## 6.51 | Given the following declarations,
+
+```c++
+void manipulate(int, int);
+double num;
+```
+- what is the rank(§ 6.6.1, p. 245) of each conversion in the following calls? 
+```c++
+manipulate('a', 'z');  // 3. Match through promotion
+manipulate(55.4, num); // 4. Math through arithmetic conversion
+```
+
+## 6.52 | Explain the effect of the second declaration in each one of the following sets of declarations. Indicate which, if any, are illegal.
+
+```c++
+(a)
+int calc(int&, int&);
+int calc(const int&, const int&); // No negative effect, just another declaration
+(b)
+int calc(char*, char*);
+int calc(const char*, const char*); // LEGAL.
+(c)
+int calc(char*, char*);
+int calc(char* const, char* const); // Negative effect. Redeclared to previously declared function. Top-level const omit.
+```
+
