@@ -402,7 +402,7 @@ void f(double, double = 3.14); <-- BM
 */
 ```
 
-## 6.51 | Given the following declarations,
+## 6.52 | Given the following declarations,
 
 ```c++
 void manipulate(int, int);
@@ -414,7 +414,7 @@ manipulate('a', 'z');  // 3. Match through promotion
 manipulate(55.4, num); // 4. Math through arithmetic conversion
 ```
 
-## 6.52 | Explain the effect of the second declaration in each one of the following sets of declarations. Indicate which, if any, are illegal.
+## 6.53 | Explain the effect of the second declaration in each one of the following sets of declarations. Indicate which, if any, are illegal.
 
 ```c++
 (a)
@@ -428,3 +428,10 @@ int calc(char*, char*);
 int calc(char* const, char* const); // Negative effect. Redeclared to previously declared function. Top-level const omit.
 ```
 
+## 6.54 | Write a declaration for a function that takes two int parameters and returns an int, and declare a vector whose elements have this function pointer type.
+
+```c++
+int f(int, int); // Function declaration
+typedef decltype(f)* pf; // Pointer to function 
+vector<pf> vec;
+```
